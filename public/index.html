@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FoodieHub | Delicious food, delivered</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <script src="/js/app.js" defer></script>
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="/"><span class="brand-icon">🍽️</span> FoodieHub</a>
+  <nav>
+    <a href="#menu">Menu</a><a href="#orders" id="ordersNav" hidden>My Orders</a>
+    <a href="#admin" id="adminNav" hidden>Admin</a>
+  </nav>
+  <div class="header-actions">
+    <button class="btn btn-ghost" id="loginOpen">Log in</button>
+    <button class="btn btn-primary" id="cartOpen">Cart <span id="cartCount">0</span></button>
+    <button class="btn btn-ghost" id="logoutBtn" hidden>Log out</button>
+  </div>
+</header>
+<main>
+  <section class="hero">
+    <div class="hero-copy">
+      <span class="eyebrow">GOOD FOOD. GOOD MOOD.</span>
+      <h1>Your cravings,<br><span>delivered.</span></h1>
+      <p>Discover tasty favourites from our menu and bring a little joy to your table.</p>
+      <a class="btn btn-primary btn-large" href="#menu">Explore menu <span>→</span></a>
+      <div class="hero-note"><span>⭐</span> Freshly prepared · Made for you</div>
+    </div>
+    <div class="hero-art"><div class="hero-circle"></div><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=1000" alt="Freshly prepared pizza"></div>
+  </section>
+  <section class="section" id="menu">
+    <div class="section-heading"><div><span class="eyebrow">WHAT SOUNDS GOOD?</span><h2>Explore our menu</h2></div><p>Find your next favourite bite.</p></div>
+    <div class="menu-tools"><input id="searchInput" type="search" placeholder="🔎  Search food..." aria-label="Search food"><div id="categoryFilters" class="category-filters"></div></div>
+    <div id="foodGrid" class="food-grid"><p class="muted">Loading delicious food...</p></div>
+  </section>
+  <section id="orders" class="section hidden"><div class="section-heading"><div><span class="eyebrow">YOUR FOOD JOURNEY</span><h2>My orders</h2></div></div><div id="ordersList"></div></section>
+  <section id="admin" class="section hidden"><div class="section-heading"><div><span class="eyebrow">CONTROL ROOM</span><h2>Admin dashboard</h2></div></div><div id="adminPanel"></div></section>
+</main>
+<footer><a class="brand" href="/">🍽️ FoodieHub</a><p>Made with care, served with flavour.</p><small>College project demonstration · Cash on delivery only</small></footer>
+
+<div class="modal-backdrop hidden" id="authModal">
+  <div class="modal"><button class="modal-close" data-close="authModal" aria-label="Close">×</button>
+    <div class="modal-brand">🍽️ FoodieHub</div><h2 id="authTitle">Welcome back</h2><p class="muted" id="authSubtitle">Log in to order your favourites.</p>
+    <form id="authForm"><div id="nameField" class="form-field hidden"><label for="authName">Full name</label><input id="authName" minlength="2" maxlength="80" autocomplete="name"></div>
+      <div class="form-field"><label for="authEmail">Email address</label><input id="authEmail" type="email" required autocomplete="email" placeholder="you@example.com"></div>
+      <div class="form-field"><label for="authPassword">Password</label><input id="authPassword" type="password" required minlength="8" autocomplete="current-password" placeholder="At least 8 characters"></div>
+      <p id="authError" class="form-error"></p><button class="btn btn-primary btn-full" type="submit" id="authSubmit">Log in</button></form>
+    <p class="switch-auth"><span id="switchText">New to FoodieHub?</span> <button class="link-button" id="switchAuth">Create account</button></p>
+  </div>
+</div>
+<div class="drawer-backdrop hidden" id="cartBackdrop"></div>
+<aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart" aria-hidden="true">
+  <div class="drawer-heading"><div><span class="eyebrow">YOUR SELECTION</span><h2>Your cart</h2></div><button class="icon-button" id="cartClose" aria-label="Close cart">×</button></div>
+  <div id="cartItems" class="cart-items"></div><div id="cartSummary" class="cart-summary"></div>
+  <button class="btn btn-primary btn-full" id="checkoutOpen">Continue to checkout →</button>
+</aside>
+<div class="modal-backdrop hidden" id="checkoutModal"><div class="modal"><button class="modal-close" data-close="checkoutModal" aria-label="Close">×</button><span class="eyebrow">ALMOST THERE</span><h2>Delivery details</h2><p class="muted">Pay cash when your order arrives.</p>
+<form id="checkoutForm"><div class="form-field"><label for="deliveryAddress">Full delivery address</label><textarea id="deliveryAddress" required maxlength="500" rows="3" placeholder="House / flat, street, area, city"></textarea></div><div class="form-field"><label for="deliveryPhone">Phone number</label><input id="deliveryPhone" required maxlength="20" pattern="[0-9+() -]{7,20}" placeholder="Your contact number"></div><div id="checkoutSummary" class="checkout-summary"></div><p id="checkoutError" class="form-error"></p><button class="btn btn-primary btn-full" type="submit">Place order · Cash on delivery</button></form></div></div>
+<div id="toast" class="toast" role="status"></div>
+</body></html>

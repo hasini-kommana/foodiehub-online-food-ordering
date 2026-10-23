@@ -1,0 +1,12 @@
+const router = require("express").Router();
+const { protect, adminOnly } = require("../middleware/authMiddleware");
+const { dashboard, allFoods, createFood, updateFood, deleteFood, allOrders, updateOrderStatus } = require("../controllers/adminController");
+router.use(protect, adminOnly);
+router.get("/dashboard", dashboard);
+router.get("/foods", allFoods);
+router.post("/foods", createFood);
+router.patch("/foods/:id", updateFood);
+router.delete("/foods/:id", deleteFood);
+router.get("/orders", allOrders);
+router.patch("/orders/:id/status", updateOrderStatus);
+module.exports = router;
